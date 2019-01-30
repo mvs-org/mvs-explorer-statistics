@@ -1,9 +1,10 @@
 {
   "name": "mvs-explorer-statistics",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Statistical data calculator for the Metaverse Blockchain explorer",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
