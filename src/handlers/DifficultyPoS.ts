@@ -1,11 +1,11 @@
 import { Block } from '../interfaces/block'
 import { Datapoint } from '../interfaces/datapoint';
 export class DifficultyPoS {
-    constructor() {}
-    calculate(interval: Block[]) : Datapoint{
+    constructor() { }
+    calculate(interval: Block[]): Datapoint {
         let result = null
         interval.some(function (block) {
-            if (block.mixhash.length === 1) {
+            if (block.mixhash.length === 1 && block.number !== 0) {
                 result = {
                     type: 'DIFFICULTY_POS',
                     height: interval[0].number,
