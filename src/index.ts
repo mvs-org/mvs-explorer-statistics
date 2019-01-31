@@ -14,7 +14,7 @@ let last: number = 1
 const BlockHandlers = [
     new DifficultyPoW(),
     new DifficultyPoS(),
-
+]
 
 async function calculateInterval() {
     console.info(`try with interval starting from ${last}`)
