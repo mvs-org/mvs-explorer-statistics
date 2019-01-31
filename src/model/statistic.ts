@@ -1,17 +1,17 @@
-import { Document, Schema, Model, model } from "mongoose";
-import { Datapoint } from "../interfaces/datapoint";
+import { Document, Model, model, Schema } from 'mongoose'
+import { IDatapoint } from '../interfaces/datapoint'
 
-export interface IStatisticModel extends Document, Datapoint {
+export interface IStatisticModel extends Document, IDatapoint {
 }
 
-export var StatisticSchema: Schema = new Schema({
-    type: String,
+export const StatisticSchema: Schema = new Schema({
     height: Number,
     timestamp: Number,
-    value: Number
-}, { collection: 'statistic' });
-StatisticSchema.index({ type: 1, height: 1 }, { unique: true });
+    type: String,
+    value: Number,
+}, { collection: 'statistic' })
+    .index({ type: 1, height: 1 }, { unique: true })
 
-export const StatisticModel: Model<IStatisticModel> = model<IStatisticModel>("Statistic", StatisticSchema);
+export const StatisticModel: Model<IStatisticModel> = model<IStatisticModel>('Statistic', StatisticSchema);
 
 

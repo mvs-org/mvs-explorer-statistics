@@ -1,25 +1,24 @@
-import { Document, Schema, Model, model} from "mongoose";
-import { Block } from "../interfaces/block";
+import { Document, Model, model, Schema} from 'mongoose'
+import { IBlock } from '../interfaces/block'
 
-export interface IBlockModel extends Document, Block{
+export interface IBlockModel extends Document, IBlock {
 
 }
 
-export var BlockSchema: Schema = new Schema({
+export const BlockSchema: Schema = new Schema({
   bits: String,
   hash: String,
   merkle_tree_hash: String,
   mixhash: String,
   nonde: String,
   number: Number,
+  orphan: Number,
   previous_block_hash: String,
   time_stamp: Number,
   transaction_count: Number,
+  txs: [String],
   version: Number,
-  orphan: Number,
-  txs: [String]
-}, {collection: 'block'} );
+}, {collection: 'block'} )
 
-export const BlockModel: Model<IBlockModel> = model<IBlockModel>("Block", BlockSchema);
-
+export const BlockModel: Model<IBlockModel> = model<IBlockModel>('Block', BlockSchema)
 

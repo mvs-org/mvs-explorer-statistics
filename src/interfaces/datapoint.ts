@@ -1,4 +1,4 @@
-export interface Datapoint {
+export interface IDatapoint {
     type: string,
     height: number,
     timestamp: number,
