@@ -4,12 +4,10 @@ export class DifficultyPoW {
     public calculate(interval: IBlock[]): IDatapoint {
         let result = null
         interval.some((block) => {
-            if (block.mixhash.length > 1) {
+            if (block.version === 1) {
                 result = {
-                    height: interval[0].number,
-                    timestamp: interval[0].time_stamp,
                     type: 'DIFFICULTY_POW',
-                    value: interval[0].bits,
+                    value: block.bits,
                 }
                 return true
             }

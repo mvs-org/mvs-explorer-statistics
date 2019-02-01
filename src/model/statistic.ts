@@ -6,6 +6,7 @@ export interface IStatisticModel extends Document, IDatapoint {
 
 export const StatisticSchema: Schema = new Schema({
     height: Number,
+    interval: Number,
     timestamp: Number,
     type: String,
     value: Number,

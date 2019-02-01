@@ -8,7 +8,7 @@ const SYNC_THRESHOLD = 100
 const SYNC_INTERVAL = 1000
 const RETRY_INTERVAL = 5000
 const URL = 'mongodb://localhost:27017/mvs'
-let last: number = 1
+let last: number = 0
 
 // Set your handlers here
 const BlockHandlers = [
@@ -25,8 +25,11 @@ async function calculateInterval() {
     const datapoints = await Promise.all(BlockHandlers.map((handler) => handler.calculate(interval)))
     datapoints.forEach(async (datapoint) => {
         if (datapoint) {
+            datapoint.height=last
+            datapoint.interval=SYNC_INTERVAL
+            datapoint.timestamp=interval[0].time_stamp
             await StatisticModel.update(
-                { type: datapoint.type, height: datapoint.height },
+                { type: datapoint.type, height: datapoint.height, interval: datapoint.interval },
                 datapoint,
                 { upsert: true, setDefaultsOnInsert: true }
             )

@@ -1,6 +1,7 @@
 export interface IDatapoint {
-    type: string,
     height: number,
+    interval: number,
     timestamp: number,
+    type: string,   
     value: number
 }
