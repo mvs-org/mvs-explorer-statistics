@@ -4,11 +4,11 @@ import { DifficultyPoW } from './handlers/DifficultyPoW'
 import { BlockModel } from './model/block'
 import { StatisticModel } from './model/statistic'
 
-const SYNC_THRESHOLD = 100
-const SYNC_INTERVAL = 1000
-const RETRY_INTERVAL = 5000
-const URL = 'mongodb://localhost:27017/mvs'
-let last: number = 0
+const SYNC_THRESHOLD = (process.env.SYNC_THRESHOLD) ? parseInt(process.env.SYNC_THRESHOLD, 10) : 100
+const SYNC_INTERVAL = (process.env.SYNC_INTERVAL) ? parseInt(process.env.SYNC_INTERVAL, 10) : 1000
+const RETRY_INTERVAL = (process.env.RETRY_INTERVAL) ? parseInt(process.env.RETRY_INTERVAL, 10) : 20 * 1000 // 20 sec
+const URL = (process.env.MONGO_URL) ? process.env.MONGO_URL : 'mongodb://localhost:27017/mvs'
+let last: number = (process.env.START_HEIGHT) ? parseInt(process.env.START_HEIGHT, 10) : 0
 
 // Set your handlers here
 const BlockHandlers = [
@@ -25,9 +25,9 @@ async function calculateInterval() {
     const datapoints = await Promise.all(BlockHandlers.map((handler) => handler.calculate(interval)))
     datapoints.forEach(async (datapoint) => {
         if (datapoint) {
-            datapoint.height=last
-            datapoint.interval=SYNC_INTERVAL
-            datapoint.timestamp=interval[0].time_stamp
+            datapoint.height = last
+            datapoint.interval = SYNC_INTERVAL
+            datapoint.timestamp = interval[0].time_stamp
             await StatisticModel.update(
                 { type: datapoint.type, height: datapoint.height, interval: datapoint.interval },
                 datapoint,
