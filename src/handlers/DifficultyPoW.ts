@@ -1,16 +1,14 @@
 import { IBlock } from '../interfaces/block'
+import { Handler } from './handler'
 import { IDatapoint } from '../interfaces/datapoint'
-export class DifficultyPoW {
-    public readonly type: string
-    constructor(public suffix?: string) {
-        this.type = 'DIFFICULTY_PO_' + (suffix ? '_' + suffix : '')
-    }
-    public calculate(interval: IBlock[]): IDatapoint {
+
+export class DifficultyPoW implements Handler {
+    public calculate(interval: IBlock[], suffix?: string): IDatapoint {
         let result = null
         interval.some((block) => {
             if (block.version === 1) {
                 result = {
-                    type: this.type,
+                    type: 'DIFFICULTY_POW' + (suffix ? '_' + suffix : ''),
                     value: block.bits,
                 }
                 return true
