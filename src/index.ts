@@ -1,9 +1,10 @@
 import { connect } from 'mongoose'
-import { DifficultyPoS } from './handlers/DifficultyPoS'
-import { DifficultyPoW } from './handlers/DifficultyPoW'
-import { CountHandler } from './handlers/Counter'
+import { DifficultyPoS } from './handlers/difficulty-pos.handler'
+import { DifficultyPoW } from './handlers/difficulty-pow.handler'
+import { CountHandler } from './handlers/block-counter.handler'
 import { Handler } from './handlers/handler'
-import { BlocktimeHandler } from './handlers/Blocktime'
+import { BlocktimeHandler } from './handlers/blocktime.handler'
+import { TransactionCounterHandler } from './handlers/transaction-counter.handler'
 import { BlockModel } from './model/block'
 import { StatisticModel } from './model/statistic'
 
@@ -20,6 +21,7 @@ const TimeHandlers: Array<Handler> = [
     new DifficultyPoW(),
     new DifficultyPoS(),
     new CountHandler(),
+    new TransactionCounterHandler(),
 ]
 
 // Setup configuration for time block calculations
