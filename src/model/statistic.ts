@@ -17,5 +17,3 @@ export const StatisticSchema: Schema = new Schema({
     .index({ type: 1, date: 1 })
 
 export const StatisticModel: Model<IStatisticModel> = model<IStatisticModel>('Statistic', StatisticSchema);
-
-

@@ -1,6 +1,6 @@
 import { IBlock } from '../interfaces/block'
-import { Handler } from './handler'
 import { IDatapoint } from '../interfaces/datapoint'
+import { Handler } from './handler'
 
 export class CountHandler implements Handler {
     public calculate(interval: IBlock[], suffix?: string): IDatapoint {

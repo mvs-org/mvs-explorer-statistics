@@ -18,10 +18,11 @@
   },
   "homepage": "https://github.com/canguruhh/mvs-explorer-statistics#readme",
   "dependencies": {
-    "mongoose": "^5.4.8"
+    "mongoose": "^5.9.5"
   },
   "devDependencies": {
     "@types/mongodb": "^3.1.19",
-    "@types/mongoose": "^5.3.10"
+    "@types/mongoose": "^5.3.10",
+    "@types/node": "^13.9.2"
   }
 }

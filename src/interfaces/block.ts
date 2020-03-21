@@ -1,4 +1,4 @@
-export interface IBlock{
+export interface IBlock {
     bits: number
     hash: string
     merkle_tree_hash: string
